@@ -6,19 +6,26 @@ export default function Skills() {
       name: "Frontend Development",
       percentage: 95,
       color: "blue",
-      tech: ["HTML5/CSS3", "JavaScript", "React", "Vue.js", "Angular"],
+      tech: [
+        "HTML5/CSS3",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Angular",
+      ],
     },
     {
       name: "Backend Development",
       percentage: 90,
       color: "green",
-      tech: ["Node.js", "Express", "Python", "Django", "PHP"],
+      tech: ["Node.js", "Express", "Python", "Java"],
     },
     {
       name: "Database Management",
       percentage: 85,
       color: "orange",
-      tech: ["MongoDB", "MySQL", "PostgreSQL", "Firebase"],
+      tech: ["MySQL", "MongoDB", "PostgreSQL"],
     },
   ];
 

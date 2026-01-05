@@ -14,7 +14,7 @@ const experienceData = [
       "Mentored junior developers and conducted code reviews",
       "Optimized application performance and implemented security best practices",
     ],
-    techs: ["React", "Node.js", "MySQL", "AWS", "TypeScript"],
+    techs: ["React", "Node.js", "MySQL", "AWS", "TypeScript", "Tailwind CSS"],
   },
   {
     period: "2022 - 2023",

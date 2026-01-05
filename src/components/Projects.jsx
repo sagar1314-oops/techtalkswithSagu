@@ -16,7 +16,7 @@ const projectsData = [
   {
     id: 2,
     title: "My Portfolio Application",
-    category: "Web App",
+    category: "Frontend",
     description:
       "Feature-rich chat platform with real-time messaging, file sharing, and user presence indicators.",
     image: "../../public/myPortFolio.png",

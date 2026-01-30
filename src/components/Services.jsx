@@ -12,7 +12,7 @@ const services = [
     icon: FiCode,
     title: "Frontend Development",
     description:
-      "Building beautiful, responsive interfaces with modern frameworks like React, Vue, and Angular.",
+      "Building beautiful, responsive interfaces with modern frameworks like React, NextJS, and Angular.",
     techs: ["React", "NextJS", "Angular", "Tailwind"],
   },
   {

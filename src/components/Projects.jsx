@@ -10,7 +10,7 @@ const projectsData = [
       "Complete e-commerce solution with product management, authentication, shopping cart, and payment processing.",
     image: "../../public/arecaMart_homePage.png",
     techs: ["NextJS", "Node.js", "MySQL"],
-    demoLink: "https://arecamart.example.com",
+    demoLink: "https://krushi-hub.vercel.app/",
     githubLink: "https://github.com/sagar1314-oops/ArecaMart",
   },
   {

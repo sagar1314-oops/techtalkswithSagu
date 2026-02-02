@@ -4,14 +4,14 @@ import { FiExternalLink, FiGithub } from "react-icons/fi";
 const projectsData = [
   {
     id: 1,
-    title: "ArecaMart - E-Commerce Platform",
+    title: "KrushiHub - E-Commerce Platform",
     category: "Full Stack",
     description:
       "Complete e-commerce solution with product management, authentication, shopping cart, and payment processing.",
-    image: "../../public/arecaMart_homePage.png",
+    image: "../../public/KrushiHub_homePage.png",
     techs: ["NextJS", "Node.js", "MySQL"],
     demoLink: "https://krushi-hub.vercel.app/",
-    githubLink: "https://github.com/sagar1314-oops/ArecaMart",
+    githubLink: "https://github.com/sagar1314-oops/KrushiHub",
   },
   {
     id: 2,

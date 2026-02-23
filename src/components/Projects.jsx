@@ -10,7 +10,7 @@ const projectsData = [
       "Complete e-commerce solution with product management, authentication, shopping cart, and payment processing.",
     image: "../../public/KrushiHub_homePage.png",
     techs: ["NextJS", "Node.js", "MySQL"],
-    demoLink: "https://krushi-hub.vercel.app/",
+    demoLink: "https://krushihub.in/",
     githubLink: "https://github.com/sagar1314-oops/KrushiHub",
   },
   {

@@ -5,16 +5,15 @@ import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi';
 export default function Navbar({ isDark, setIsDark }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = ['home', 'about', 'skills', 'services', 'projects', 'experience', 'contact'];
+  const navItems = ['home', 'about', 'projects', 'services', 'skills', 'experience', 'contact'];
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="fixed top-0 w-full bg-[color:var(--bg)] backdrop-blur-md z-50 border-b border-[color:var(--border)]">
+      <div className="max-w-6xl mx-auto px-6">
         <div className="flex justify-between items-center h-20">
-          
-          {/* Logo */}
-          <div className="text-xl font-bold text-blue-600 leading-tight">
-            Full-Stack Dev
+          <div className="text-xl font-semibold tracking-tight">
+            <span className="text-[color:var(--text)]">Sagar</span>
+            <span className="text-[color:var(--accent)]">.</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -26,7 +25,9 @@ export default function Navbar({ isDark, setIsDark }) {
                 spy={true}
                 smooth={true}
                 duration={500}
-                className="capitalize cursor-pointer hover:text-blue-600 transition font-medium text-gray-700 dark:text-gray-300"
+                offset={-90}
+                activeClass="text-[color:var(--accent)] after:scale-x-100"
+                className="relative capitalize cursor-pointer transition font-medium text-[color:var(--muted)] hover:text-[color:var(--text)] after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:bg-[color:var(--accent)] after:scale-x-0 after:origin-left after:transition-transform"
               >
                 {item}
               </Link>
@@ -37,21 +38,21 @@ export default function Navbar({ isDark, setIsDark }) {
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+              className="p-2 rounded-full border border-[color:var(--border)] hover:bg-[color:var(--surface-2)] transition"
             >
-              {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
+              {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
             </button>
             <Link
               to="contact"
               smooth={true}
               duration={500}
-              className="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition cursor-pointer"
+              className="hidden md:block bg-[color:var(--accent)] text-white px-6 py-2 rounded-full font-medium hover:opacity-90 transition cursor-pointer"
             >
               Hire Me
             </Link>
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-gray-700 dark:text-gray-300"
+              className="md:hidden text-[color:var(--text)]"
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -60,7 +61,7 @@ export default function Navbar({ isDark, setIsDark }) {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-3 border-t">
+          <div className="md:hidden pb-4 space-y-3 border-t border-[color:var(--border)]">
             {navItems.map((item) => (
               <Link
                 key={item}
@@ -68,7 +69,7 @@ export default function Navbar({ isDark, setIsDark }) {
                 spy={true}
                 smooth={true}
                 duration={500}
-                className="capitalize cursor-pointer hover:text-blue-600 transition font-medium block text-gray-700 dark:text-gray-300"
+                className="capitalize cursor-pointer transition font-medium block text-[color:var(--muted)] hover:text-[color:var(--text)]"
                 onClick={() => setIsOpen(false)}
               >
                 {item}

@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  FiMail,
-  FiPhone,
-  FiMapPin,
-  FiArrowRight,
-  FiCheck,
-} from "react-icons/fi";
-import { Link } from "react-scroll";
+import { FiMail, FiPhone, FiMapPin, FiArrowUpRight } from "react-icons/fi";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -18,6 +11,9 @@ export default function Contact() {
 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [isSending, setIsSending] = useState(false);
+
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mvzwwgrd";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,25 +27,46 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation
     if (!formData.name || !formData.email || !formData.message) {
-      setError("Please fill in all required fields");
+      setError("Please fill in all required fields.");
       return;
     }
 
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      setError("Please enter a valid email address");
+      setError("Please enter a valid email address.");
       return;
     }
 
-    // Here you would typically send the form data to a backend or email service
-    console.log("Form submitted:", formData);
+    setIsSending(true);
+    setError("");
 
-    setSubmitted(true);
-    setTimeout(() => {
+    try {
+      const formPayload = new FormData();
+      formPayload.append("name", formData.name);
+      formPayload.append("email", formData.email);
+      formPayload.append("phone", formData.phone);
+      formPayload.append("message", formData.message);
+
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: formPayload,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message.");
+      }
+
+      setSubmitted(true);
       setFormData({ name: "", phone: "", email: "", message: "" });
-      setSubmitted(false);
-    }, 3000);
+      setTimeout(() => setSubmitted(false), 2500);
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const contactInfo = [
@@ -74,209 +91,146 @@ export default function Contact() {
   ];
 
   return (
-    <section
-      id="contact"
-      className="py-20 px-4 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900"
-    >
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-            <span className="text-gray-400 dark:text-gray-500">Let's</span>{" "}
-            <span className="text-blue-600">Connect</span>
-          </h2>
+    <section id="contact" className="section">
+      <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10">
+        <div className="space-y-6">
+          <div>
+            <p className="uppercase tracking-[0.3em] text-xs text-[color:var(--muted)]">
+              Contact
+            </p>
+            <h2 className="text-4xl md:text-5xl font-semibold text-[color:var(--text)]">
+              Let's build something worth sharing.
+            </h2>
+            <p className="text-lg text-[color:var(--muted)] mt-4">
+              Tell me about your idea, and I will get back with timelines and next
+              steps.
+            </p>
+          </div>
 
-          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-            Let's talk about your project
-          </h3>
-
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            I'm always open to discussing new projects, creative ideas, or
-            opportunities to be part of your vision. Let's connect!
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            {/* Contact Cards */}
-            {contactInfo.map((info, index) => {
+          <div className="space-y-4">
+            {contactInfo.map((info) => {
               const Icon = info.icon;
               return (
                 <a
-                  key={index}
+                  key={info.label}
                   href={info.link}
-                  className="flex items-start gap-4 p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition transform hover:scale-105"
+                  className="flex items-center gap-4 p-4 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)]"
                 >
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
-                      <Icon size={24} />
-                    </div>
+                  <div className="w-12 h-12 rounded-full bg-[color:var(--surface-2)] flex items-center justify-center">
+                    <Icon className="text-[color:var(--accent)]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      {info.label}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-[color:var(--muted)]">{info.label}</p>
+                    <p className="text-[color:var(--text)] font-medium">
                       {info.value}
                     </p>
                   </div>
                 </a>
               );
             })}
-
-            {/* Social Links */}
-            <div className="pt-8">
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Connect with me
-              </h4>
-              <div className="flex gap-4">
-                {[
-                  {
-                    name: "LinkedIn",
-                    url: "https://linkedin.com/in/sagar-t-c-514166224",
-                    icon: "🔗",
-                  },
-                  {
-                    name: "GitHub",
-                    url: "https://github.com/sagar1314-oops",
-                    icon: "💻",
-                  },
-
-                  { name: "Portfolio", url: "#home", icon: "🌐" },
-                ].map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition transform hover:scale-110"
-                    title={social.name}
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-lg">
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-              Send me a message
-            </h3>
-
-            {submitted && (
-              <div className="mb-6 p-4 bg-green-100 dark:bg-green-900/30 border border-green-400 dark:border-green-700 rounded-lg flex items-center gap-3">
-                <FiCheck
-                  className="text-green-600 dark:text-green-400"
-                  size={24}
-                />
-                <span className="text-green-600 dark:text-green-400 font-semibold">
-                  Message sent successfully! I'll get back to you soon.
-                </span>
-              </div>
-            )}
-
-            {error && (
-              <div className="mb-6 p-4 bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-700 rounded-lg">
-                <p className="text-red-600 dark:text-red-400 font-semibold">
-                  {error}
-                </p>
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name Field */}
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-semibold text-gray-900 dark:text-white mb-2"
-                >
-                  Name <span className="text-red-600">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your full name"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                  required
-                />
-              </div>
-
-              {/* Phone Field */}
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-semibold text-gray-900 dark:text-white mb-2"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Your phone number"
-                  pattern="[0-9\s\-\+\(\)]+"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                />
-              </div>
-
-              {/* Email Field */}
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-semibold text-gray-900 dark:text-white mb-2"
-                >
-                  Email <span className="text-red-600">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="your.email@example.com"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                  required
-                />
-              </div>
-
-              {/* Message Field */}
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-semibold text-gray-900 dark:text-white mb-2"
-                >
-                  Message <span className="text-red-600">*</span>
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell me about your project..."
-                  rows="5"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition resize-none"
-                  required
-                ></textarea>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2 group"
+          <div className="flex flex-wrap gap-3">
+            {[
+              { name: "LinkedIn", url: "https://linkedin.com/in/sagar-t-c-514166224" },
+              { name: "GitHub", url: "https://github.com/sagar1314-oops" },
+              { name: "Portfolio", url: "#home" },
+            ].map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target={social.url.startsWith("http") ? "_blank" : "_self"}
+                rel="noopener noreferrer"
+                className="text-sm border border-[color:var(--border)] px-4 py-2 rounded-full text-[color:var(--muted)] hover:text-[color:var(--text)] hover:bg-[color:var(--surface-2)] transition"
               >
-                Send Message
-                <FiArrowRight className="group-hover:translate-x-1 transition" />
-              </button>
-            </form>
+                {social.name}
+              </a>
+            ))}
           </div>
+        </div>
+
+        <div className="bg-[color:var(--surface)] border border-[color:var(--border)] rounded-3xl p-8">
+          <h3 className="text-2xl font-semibold text-[color:var(--text)] mb-6">
+            Send a message
+          </h3>
+
+          {submitted && (
+            <div className="mb-6 p-4 rounded-2xl bg-[color:var(--surface-2)] text-[color:var(--text)] text-sm">
+              Thanks! Your message is on its way.
+            </div>
+          )}
+
+          {error && (
+            <div className="mb-6 p-4 rounded-2xl border border-[color:var(--border)] text-sm text-[color:var(--muted)]">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block text-sm text-[color:var(--muted)] mb-2" htmlFor="name">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full rounded-2xl border border-[color:var(--border)] bg-transparent px-4 py-3 text-[color:var(--text)]"
+                placeholder="Your full name"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm text-[color:var(--muted)] mb-2" htmlFor="email">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full rounded-2xl border border-[color:var(--border)] bg-transparent px-4 py-3 text-[color:var(--text)]"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm text-[color:var(--muted)] mb-2" htmlFor="phone">
+                Phone (optional)
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className="w-full rounded-2xl border border-[color:var(--border)] bg-transparent px-4 py-3 text-[color:var(--text)]"
+                placeholder="+91 00000 00000"
+              />
+            </div>
+            <div>
+              <label className="block text-sm text-[color:var(--muted)] mb-2" htmlFor="message">
+                Project details
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows="5"
+                className="w-full rounded-2xl border border-[color:var(--border)] bg-transparent px-4 py-3 text-[color:var(--text)]"
+                placeholder="Tell me about your goals, scope, and timeline."
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-[color:var(--accent)] text-white font-semibold py-3 rounded-full inline-flex items-center justify-center gap-2 hover:opacity-90 transition disabled:opacity-60"
+              disabled={isSending}
+            >
+              {isSending ? "Sending..." : "Send message"} <FiArrowUpRight />
+            </button>
+          </form>
         </div>
       </div>
     </section>

@@ -21,12 +21,12 @@ function App() {
   }, [isDark]);
 
   return (
-    <div className="bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div className="bg-[color:var(--bg)] text-[color:var(--text)] transition-colors duration-300 min-h-screen">
       <Navbar isDark={isDark} setIsDark={setIsDark} />
       <Hero />
       <About />
-      <Services />
       <Projects />
+      <Services />
       <Skills />
       <Experience />
       <Contact />

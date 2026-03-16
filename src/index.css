@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,20 +15,53 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 /* Custom components */
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all;
+    @apply px-6 py-3 rounded-full font-semibold transition-all;
   }
 
   .btn-secondary {
-    @apply border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-full font-semibold transition-all;
+    @apply border-2 px-6 py-3 rounded-full font-semibold transition-all;
   }
 
   .section {
-    @apply py-20 px-6 max-w-7xl mx-auto;
+    @apply py-20 px-6 max-w-6xl mx-auto;
   }
+}
+
+:root {
+  --bg: #f5f2ec;
+  --surface: #ffffff;
+  --surface-2: #efe9df;
+  --text: #121212;
+  --muted: #5f5b55;
+  --border: #e3ddd1;
+  --accent: #ff5d3a;
+  --accent-strong: #111111;
+}
+
+html.dark {
+  --bg: #0f1115;
+  --surface: #15181e;
+  --surface-2: #1b2027;
+  --text: #f7f3ec;
+  --muted: #b6b0a7;
+  --border: #2a2f37;
+  --accent: #ff6a3d;
+  --accent-strong: #f7f3ec;
+}
+
+.font-display {
+  font-family: 'Instrument Serif', serif;
+}
+
+.grain {
+  background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1px, transparent 0);
+  background-size: 4px 4px;
 }

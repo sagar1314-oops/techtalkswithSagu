@@ -8,6 +8,7 @@ import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -31,6 +32,7 @@ function App() {
       <Experience />
       <Contact />
       <Footer />
+      <Analytics />
     </div>
   );
 }

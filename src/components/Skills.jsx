@@ -2,19 +2,19 @@ export default function Skills() {
   const stacks = [
     {
       title: "Frontend",
-      items: ["React", "Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+      items: ["React.js", "Next.js", "TypeScript", "Tailwind", "HTML5", "CSS3"],
     },
     {
       title: "Backend",
-      items: ["Node.js", "Express", "Python", "REST APIs", "Auth"],
+      items: ["Node.js", "Express", "REST APIs", "Authentication", "Sequelize"],
     },
     {
-      title: "Data",
-      items: ["MySQL", "MongoDB", "PostgreSQL", "Prisma", "Redis"],
+      title: "Database",
+      items: ["MySQL", "Prisma"],
     },
     {
-      title: "DevOps",
-      items: ["Docker", "AWS", "CI/CD", "Vercel", "GitHub Actions"],
+      title: "Deployment",
+      items: ["AWS", "Vercel", "GitHub", "Railway"],
     },
   ];
 

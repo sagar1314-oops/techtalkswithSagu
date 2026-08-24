@@ -7,11 +7,12 @@ const experienceData = [
     company: "Invendis Technologies India Pvt. Ltd.",
     location: "Bengaluru",
     summary:
-      "Leading full-stack delivery for enterprise platforms, focusing on scalable architecture and performance.",
+      "Developed React-based enterprise monitoring applications for telecom and energy domains.",
     highlights: [
-      "Built production-ready React and Node.js systems",
-      "Owned CI/CD workflows and release quality",
-      "Partnered with design for UI polish",
+      "Built real-time dashboards using AG Grid and Highcharts",
+      "Optimized large datasets using pagination and virtualization.",
+      "Implemented RBAC interfaces, dynamic forms and reusable components.",
+      "Reduced application bundle size from 20 MB to 6 MB, improving load performance by approximately 50%.",
     ],
   },
   {
@@ -67,9 +68,7 @@ export default function Experience() {
                 </span>
               </div>
             </div>
-            <p className="mt-4 text-[color:var(--muted)]">
-              {role.summary}
-            </p>
+            <p className="mt-4 text-[color:var(--muted)]">{role.summary}</p>
             <div className="mt-4 grid md:grid-cols-3 gap-4">
               {role.highlights.map((item) => (
                 <div

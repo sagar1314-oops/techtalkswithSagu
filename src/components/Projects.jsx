@@ -3,10 +3,10 @@ import { FiArrowUpRight } from "react-icons/fi";
 const projectsData = [
   {
     id: 1,
-    title: "pawszone.in",
+    title: "PawsZone",
     category: "Pet-Commerce Platform",
     description:
-      "Modern marketplace for all pet lovers with grooming and vet care, product management, and payments.",
+      "Full-stack pet-commerce platform built with React, Node.js, Express and MySQL, featuring product management, cart & checkout, orders, promotions, grooming and veterinary services.",
     image: "/pawsZone_homePage.png",
     techs: ["React.js", "Node.js", "express.js", "MySQL"],
     demoLink: "https://pawszone.in/",
@@ -21,26 +21,26 @@ const projectsData = [
     techs: ["Next.js", "Node.js", "MySQL"],
     demoLink: "https://krushihub.in/",
   },
-  {
-    id: 2,
-    title: "Portfolio Experience",
-    category: "Personal Brand",
-    description:
-      "High-converting portfolio with smooth scroll, motion, and content blocks.",
-    image: "/myPortFolio.png",
-    techs: ["React", "Tailwind"],
-    demoLink: "#",
-  },
   // {
   //   id: 3,
-  //   title: "Arecamart",
-  //   category: "E-Commerce Platform",
+  //   title: "Portfolio Experience",
+  //   category: "Personal Brand",
   //   description:
-  //     "Marketplace experience focused on clean UX, product discovery, and reliable flows.",
-  //   image: "/arecaMart_homePage.png",
-  //   techs: ["React", "Node.js"],
-  //   demoLink: "https://github.com/sagar1314-oops/ArecaMart",
+  //     "High-converting portfolio with smooth scroll, motion, and content blocks.",
+  //   image: "/myPortFolio.png",
+  //   techs: ["React", "Tailwind"],
+  //   demoLink: "#",
   // },
+  {
+    id: 3,
+    title: "Arecamart",
+    category: "E-Commerce Platform",
+    description:
+      "Marketplace experience focused on clean UX, product discovery, and reliable flows.",
+    image: "/arecaMart_homePage.png",
+    techs: ["React", "Node.js"],
+    demoLink: "https://github.com/sagar1314-oops/ArecaMart",
+  },
 ];
 
 export default function Projects() {

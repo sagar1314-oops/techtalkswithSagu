@@ -8,16 +8,14 @@ export default function About() {
           <p className="uppercase tracking-[0.3em] text-xs text-[color:var(--muted)]">
             About
           </p>
-          <h2 className="text-4xl md:text-5xl font-semibold text-[color:var(--text)]">
-            Product-minded engineer crafting experiences that feel premium.
+          <h2 className="text-xl md:text-2xl font-semibold text-[color:var(--text)]">
+            I'm a Software Engineer with 2+ years of experience building web applications with React.js and Angular.
           </h2>
           <p className="text-lg text-[color:var(--muted)]">
-            I blend frontend polish with backend reliability, shipping web
-            platforms that are fast, readable, and ready to scale.
+            My professional experience includes enterprise monitoring dashboards, role-based applications and data-heavy interfaces.
           </p>
           <p className="text-lg text-[color:var(--muted)]">
-            My focus is on turning complex ideas into simple, elegant interfaces
-            backed by clean architecture.
+            Alongside my professional work, I build full-stack products using Node.js, Express and MySQL.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link

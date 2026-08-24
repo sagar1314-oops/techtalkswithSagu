@@ -3,6 +3,16 @@ import { FiArrowUpRight } from "react-icons/fi";
 const projectsData = [
   {
     id: 1,
+    title: "pawszone.in",
+    category: "Pet-Commerce Platform",
+    description:
+      "Modern marketplace for all pet lovers with grooming and vet care, product management, and payments.",
+    image: "/pawsZone_homePage.png",
+    techs: ["React.js", "Node.js", "express.js", "MySQL"],
+    demoLink: "https://pawszone.in/",
+  },
+  {
+    id: 2,
     title: "KrushiHub",
     category: "E-Commerce Platform",
     description:
@@ -21,16 +31,16 @@ const projectsData = [
     techs: ["React", "Tailwind"],
     demoLink: "#",
   },
-  {
-    id: 3,
-    title: "Arecamart",
-    category: "E-Commerce Platform",
-    description:
-      "Marketplace experience focused on clean UX, product discovery, and reliable flows.",
-    image: "/arecaMart_homePage.png",
-    techs: ["React", "Node.js"],
-    demoLink: "https://github.com/sagar1314-oops/ArecaMart",
-  },
+  // {
+  //   id: 3,
+  //   title: "Arecamart",
+  //   category: "E-Commerce Platform",
+  //   description:
+  //     "Marketplace experience focused on clean UX, product discovery, and reliable flows.",
+  //   image: "/arecaMart_homePage.png",
+  //   techs: ["React", "Node.js"],
+  //   demoLink: "https://github.com/sagar1314-oops/ArecaMart",
+  // },
 ];
 
 export default function Projects() {
@@ -74,7 +84,9 @@ export default function Projects() {
                 <h3 className="text-2xl font-semibold text-[color:var(--text)]">
                   {project.title}
                 </h3>
-                <p className="text-[color:var(--muted)]">{project.description}</p>
+                <p className="text-[color:var(--muted)]">
+                  {project.description}
+                </p>
               </div>
               <div className="flex flex-wrap gap-2">
                 {project.techs.map((tech) => (
